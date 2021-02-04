@@ -6,6 +6,9 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.nio.file.Path;
 
@@ -14,6 +17,7 @@ public class PrintFile {
     private final Path out;
     private final Path cleared;
     private final String html;
+    private static final Logger logger = LoggerFactory.getLogger(PrintFile.class);
 
 
     public PrintFile(Path out, Path cleared, String html) throws IOException {
@@ -28,6 +32,7 @@ public class PrintFile {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(outFile))) {
             out.write(html);
         }
+        logger.debug("html is cleared");
     }
 
 
@@ -43,7 +48,7 @@ public class PrintFile {
 
         page.setMediaBox(new Rectangle(30, 30, 114, 120));
         document.close();
-
+        logger.debug("PDF is created");
     }
 
     public void print() throws IOException {
@@ -51,6 +56,8 @@ public class PrintFile {
         createPdf();
         String str = "lp -o orientation-requested=3 " +
                 out.toAbsolutePath();
+        logger.debug("Prepared to send to terminal");
         Runtime.getRuntime().exec(str);
+        logger.debug("Command send to Runtime");
     }
 }
