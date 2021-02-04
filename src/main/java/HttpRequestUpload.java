@@ -6,9 +6,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class HttpRequestUpload implements HttpHandler {
-    private final Path tempPath = Paths.get("./temp");
-    private final Path outFile = Paths.get("./temp/out.pdf");
-    private final Path cleared = Paths.get("./temp/clearHtml.html");
+    private final Path tempPath = Paths.get("../temp").toAbsolutePath();
+    private final Path outFile = Paths.get("../temp/out.pdf").toAbsolutePath();
+    private final Path cleared = Paths.get("../temp/clearHtml.html").toAbsolutePath();
+
 
 
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -32,7 +33,7 @@ public class HttpRequestUpload implements HttpHandler {
 
         httpExchange.close();
         try {
-            new PrintFile(outFile.toAbsolutePath(), cleared.toAbsolutePath(), query);
+            new PrintFile(outFile, cleared, query);
         } catch (Exception e) {
             e.printStackTrace();
         }
