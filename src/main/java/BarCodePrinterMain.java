@@ -18,6 +18,6 @@ public class BarCodePrinterMain {
 
             server.setExecutor(null);
             server.start();
-            logger.debug("Server started");
+            logger.info("Server started");
     }
 }

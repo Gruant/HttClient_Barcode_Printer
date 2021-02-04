@@ -32,7 +32,7 @@ public class PrintFile {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(outFile))) {
             out.write(html);
         }
-        logger.debug("html is cleared");
+//        logger.debug("html is cleared");
     }
 
 
@@ -48,7 +48,7 @@ public class PrintFile {
 
         page.setMediaBox(new Rectangle(30, 30, 114, 120));
         document.close();
-        logger.debug("PDF is created");
+        logger.info("PDF is created");
     }
 
     public void print() throws IOException {
@@ -56,8 +56,8 @@ public class PrintFile {
         createPdf();
         String str = "lp -o orientation-requested=3 " +
                 out.toAbsolutePath();
-        logger.debug("Prepared to send to terminal");
+//        logger.debug("Prepared to send to terminal");
         Runtime.getRuntime().exec(str);
-        logger.debug("Command send to Runtime");
+        logger.info("Print bar");
     }
 }
