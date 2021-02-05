@@ -42,7 +42,7 @@ public class HttpRequestUpload implements HttpHandler {
             new PrintFile(outFile, cleared, query);
 //            logger.debug("Out from PrintFile");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(String.valueOf(e));
         }
     }
 }
