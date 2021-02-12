@@ -46,7 +46,7 @@ public class PrintFile {
         document.getRenderer().close();
         PdfPage page = pdf.getPage(1);
 
-        page.setMediaBox(new Rectangle(30, 30, 114, 120));
+        page.setMediaBox(new Rectangle(30, 30, 130, 120));
         document.close();
         logger.info("PDF is created");
     }
