@@ -3,21 +3,22 @@ import com.sun.net.httpserver.HttpHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+
 public class HttpRequestUpload implements HttpHandler {
-    private final Path tempPath = Paths.get("./temp").toAbsolutePath();
-    private final Path outFile = Paths.get("./temp/out.pdf").toAbsolutePath();
-    private final Path cleared = Paths.get("./temp/clearHtml.html").toAbsolutePath();
+    private final Path tempPath = Paths.get("."+ File.separator+"temp").toAbsolutePath();
+    private final Path outFile = Paths.get("."+ File.separator+"temp"+ File.separator+"out.pdf").toAbsolutePath();
+    private final Path cleared = Paths.get("."+ File.separator+"temp"+ File.separator+"clearHtml.html").toAbsolutePath();
     private static final Logger logger = LoggerFactory.getLogger(HttpRequestUpload.class);
 
 
 
     public void handle(HttpExchange httpExchange) throws IOException {
-//        logger.debug("Take context");
         if (!Files.isDirectory(tempPath)) { Files.createDirectory(tempPath); }
 
         if (Files.isRegularFile(outFile)) {
